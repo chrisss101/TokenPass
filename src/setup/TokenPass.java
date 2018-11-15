@@ -3,10 +3,12 @@ package setup;
 
 public class TokenPass {
 
-    private int[] board;
-    private int currentPlayer = 0;
+   // private int[] board;
+    public int currentPlayer = 0;
+    public boolean Ongoing = true;
+    int[] board = new int[6];
     public TokenPass(int playerCount) {
-        int[] board = new int[playerCount];
+         //int[] board = new int[playerCount];
         for (int i = 0; i < playerCount; i++) {
             board[i] = (int) Math.random() * 10 + 1;
         }
@@ -47,8 +49,8 @@ public class TokenPass {
             }
         }
     }
-    public void printBoard() {
-        for (int i  = 0; i < board.length; i++ ) {
+    public void printBoard(int length) {
+        for (int i  = 0; i < length; i++ ) {
             for (int j = 0; j < board[i]; j++ ) {
                 System.out.println("l");
             }
@@ -56,15 +58,28 @@ public class TokenPass {
         }
     }
     public void nextPlayer() {
-        currentPlayer = board[currentPlayer + 1];
+        if (currentPlayer < board.length) {
+            currentPlayer = board[currentPlayer + 1];
+        }
+        else {
+            currentPlayer = 0;
+        }
     }
-    public int gameOver() {
+
+    public void gameOver() {
+        int checker = 0;
         for (int i = 0; i < board.length; i++) {
             if (board[i] == 0) {
-                return currentPlayer;
+                checker = 1;
             }
         }
-        return -1;
+        if (checker == 1) {
+            Ongoing = false;
+        }
+        else {
+            Ongoing = true;
+        }
+
     }
 
 }
