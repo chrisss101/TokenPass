@@ -1,3 +1,6 @@
+package setup;
+
+
 public class TokenPass {
 
     private int[] board;
@@ -9,13 +12,13 @@ public class TokenPass {
         }
     }
 
-    public  void distributeTokens(int playerCount) {
+    public  void distributeTokens() {
         int playerTokens = board[currentPlayer];
 
         while (playerTokens > 0) {
             board[currentPlayer]++;
             playerTokens--;
-            if (currentPlayer != playerCount) {
+            if (currentPlayer != board.length) {
                 currentPlayer++;
             }
             else {
@@ -43,6 +46,25 @@ public class TokenPass {
                 swappable = false;
             }
         }
+    }
+    public void printBoard() {
+        for (int i  = 0; i < board.length; i++ ) {
+            for (int j = 0; j < board[i]; j++ ) {
+                System.out.println("l");
+            }
+            System.out.println(" ");
+        }
+    }
+    public void nextPlayer() {
+        currentPlayer = board[currentPlayer + 1];
+    }
+    public int gameOver() {
+        for (int i = 0; i < board.length; i++) {
+            if (board[i] == 0) {
+                return currentPlayer;
+            }
+        }
+        return -1;
     }
 
 }
