@@ -4,7 +4,7 @@ package setup;
 public class TokenPass {
 
    // private int[] board;
-    public int currentPlayer = 0;
+    public int currentPlayer = 1;
     public boolean Ongoing = true;
     int[] board = new int[6];
     public TokenPass(int playerCount) {
@@ -50,6 +50,7 @@ public class TokenPass {
         }
     }
     public void printBoard(int length) {
+        System.out.println(" Here is the board rn");
         for (int i  = 0; i < length; i++ ) {
             for (int j = 0; j < board[i]; j++ ) {
                 System.out.println("l");
@@ -59,7 +60,7 @@ public class TokenPass {
     }
     public void nextPlayer() {
         if (currentPlayer < board.length) {
-            currentPlayer = board[currentPlayer + 1];
+            currentPlayer++;
         }
         else {
             currentPlayer = 0;
